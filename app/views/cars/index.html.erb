@@ -1,0 +1,24 @@
+<h1>Cars#index</h1>
+<p>Find me in app/views/cars/index.html.erb</p>
+
+
+<div class="table-container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr>
+      <th>Nickname</th>
+      <th>Make</th>
+      <th>Model</th>      
+      <th>Year</th>
+    </tr>
+    
+    <% @cars.each do |c| %>
+    <tr>
+      <td><%= link_to c.nickname,services_path(:car_id => c) %>
+      <td><%= c.make %></td>
+      <td><%= c.model %></td>
+      <td><%= c.year %></td> 
+    </tr>
+    <% end %>
+    
+  </table>
+</div>

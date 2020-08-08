@@ -1,0 +1,19 @@
+<h1>Cars#show</h1>
+<p>Find me in app/views/cars/show.html.erb</p>
+
+
+
+<div class="table-container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr>
+      <th>Service Date</th>
+      <th>Description</th>      
+      <th>Notes</th>
+    </tr>  
+    <tr>
+      <td><%= @car.services.service_date %></td>
+      <td><%= @car.services.description %></td>
+      <td><%= @car.services.notes %></td> 
+    </tr>    
+  </table>
+</div>

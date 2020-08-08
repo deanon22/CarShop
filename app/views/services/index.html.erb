@@ -1,0 +1,38 @@
+<h1>Services</h1>
+
+
+<div class="table-container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr>
+      <th>Date of Service</th>
+      <th>Service Description</th>
+      <th>Service Notes</th>      
+      <th>Mileage</th>
+      <th>Car</th>      
+      <th>Action</th>
+    </tr>
+    
+    <% @services.each do |s| %>
+    <tr>
+      <td><%= link_to s.service_date.strftime("%m/%d/%Y"), service_path(s) %></td>
+      <td><%= s.description %></td>
+      <td><%= s.notes %></td>      
+      <td><%= number_with_delimiter(s.mileage) %>
+      <td><%= s.car.nickname %></td>
+      <td><%= link_to 'Delete Service', service_path(s), 
+              method: :delete, data: {confirm:"Are you sure you want to delete this service record?" }, 
+                                                        class: "btn btn-xs btn-danger" %> </td>
+
+    </tr>
+    <% end %>    
+  </table>
+</div>
+
+<%= link_to 'Add New Service', new_service_path() %>
+
+
+
+
+
+  
+ 

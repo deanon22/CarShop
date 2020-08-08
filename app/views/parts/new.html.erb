@@ -1,0 +1,10 @@
+<%= @service %>
+
+<%= simple_form_for(@part) do |f| %>
+  <%= f.input :name  %>  
+  <%= f.input :description  %>
+  <%= f.input :price  %>
+  <%=  f.input_field :service_id, :as => :hidden %>
+  <%= f.button :submit %>
+
+<% end %>

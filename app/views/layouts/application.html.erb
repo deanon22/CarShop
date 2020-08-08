@@ -6,10 +6,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# <%= <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">%> 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= render 'layouts/navigation' %>
   <body>
-    <%= yield %>
+    <%= render 'layouts/navigation' %>
+    <%=render 'layouts/messages' %>   
+    <section class="section">
+      <div class="content">    
+        <%= yield %>        
+      </div>
+    </section>
   </body>
 </html>

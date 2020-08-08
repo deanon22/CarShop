@@ -1,0 +1,17 @@
+<% if notice %>
+  <div class="notification is-success" >
+    <button type="button" class="delete" data-dismiss="notification" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+      <%= notice %>
+  </div>
+<% end %>
+
+<% if alert %>
+  <div class="notification is-danger" role="notification">
+  <button type="button" class="delete" data-dismiss="notification" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    <%= alert %>
+  </div>
+<% end %>

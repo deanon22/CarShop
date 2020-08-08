@@ -1,0 +1,16 @@
+<section>
+  <div class="columns"> 
+    <div class="column is-half">
+    <%= simple_form_for(@service) do |f| %>
+      <%= f.input :service_date, as: :date, order: [:month,:day, :year],  input_html:{class: 'input class="select" type="select"'} %>
+      <%= f.input :notes, as: :text, input_html: {class: 'input class="input" type="textarea" placeholder="Notes"'} %>  
+      <%= f.input :description, as: :text, input_html: {class: 'input class="input" type="textarea" placeholder="Description"'} %>
+      <%= f.input :mileage, as: :integer,  input_html: {class: 'input class="input" type="number" placeholder="Mileage"'} %>
+      <%= f.input :cost, as: :decimal, input_html: {class: 'input class="input" type="number"'}%>
+      <%= f.input :car_id, as: :integer, input_html: {class: 'input class="input" type="text"'} %> 
+      <%= f.file_field :uploads, multiple: true, accept: 'application/pdf', as: :file, input_html: {class: 'input class="file-input" type="file"' } %>
+      <%= f.button :submit, {class: 'button is-primary'} %>
+    <% end %>
+    </div> 
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<h1>Service#new_service</h1>
+
+<p>
+  <%= @greeting %>, find me in app/views/service_mailer/new_service.html.erb
+</p>
+
+
+
+<h1>Services</h1>
+
+
+<div class="table-container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr>
+      <th>Date of Service</th>
+      <th>Service Description</th>
+      <th>Service Notes</th>      
+      <th>Mileage</th>
+      <th>Car</th>      
+    </tr>
+    
+    <% @services.each do |s| %>
+    <tr>
+      <td><%= link_to s.service_date.strftime("%m/%d/%Y"), service_path(s) %></td>
+      <td><%= s.description %></td>
+      <td><%= s.notes %></td>      
+      <td><%= number_with_delimiter(s.mileage) %>
+      <td><%= s.car.nickname %></td>
+
+    </tr>
+    <% end %>    
+  </table>
+</div>
+
