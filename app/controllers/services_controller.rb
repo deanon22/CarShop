@@ -16,7 +16,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
-      ServiceMailer.with(service: @service).new_service.deliver_now
+      ServiceMailer.with(service: @service).new_service
       flash[:success] = "Service was successfully created"
       redirect_to service_path(@service)
     else 
