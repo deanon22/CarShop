@@ -16,6 +16,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
+      ServiceMailer.with(service: @service).new_service.deliver_later
       flash[:success] = "Service was successfully created"
       redirect_to service_path(@service)
     else 
@@ -51,7 +52,7 @@ class ServicesController < ApplicationController
 end
 private
   def service_params
-    params.require(:service).permit(:service_date, :description, :notes, :mileage, :nickname, :car_id, uploads:[])
+    params.require(:service).permit(:service_date, :description, :notes, :mileage, :cost, :nickname, :car_id, uploads:[])
   end
   def set_service
     @service = Service.find(params[:id])

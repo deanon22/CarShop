@@ -71,7 +71,7 @@
           
           <% @service.uploads.each do |upload| %>
           <tr>
-            <td><%= link_to upload.filename, upload %></td>
+            <td><%= link_to upload.filename, upload, target: :blank %></td>
             <td><%= upload.created_at.strftime("%m/%d/%Y %r") %></td>
             <%# <td><%= image_tag upload.preview(resize: "50x50") %></td>
             <td><%= link_to 'Remove Attachment' %></td>
