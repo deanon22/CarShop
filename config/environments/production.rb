@@ -65,17 +65,20 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'carshop-rails.herokuapp.com', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'https://carshop-rails.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587,
-    domain: 'herokuapp.com',
+    domain: 'carshop-rails.herokuapp.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD']    
+    user_name: Rails.credentials.sendgrid[:SENDGRID_USERNAME],
+    password: Rails.credentials.sendgrid[:SENDGRID_PASSWORD]
+    # user_name: ENV['SENDGRID_USERNAME'],
+    # password: ENV['SENDGRID_PASSWORD']  
+    # API: ENV['SENDGRID_API_KEY'] 
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
