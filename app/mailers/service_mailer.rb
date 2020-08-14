@@ -12,6 +12,6 @@ class ServiceMailer < ApplicationMailer
     @description = @service.description
     
 
-    mail to: 'jdean22@gmail.com',from: 'jdean22@gmail.com', subject: "Services for #{@service.car.nickname}"
+    mail to: 'jdean22@gmail.com',from: 'support@carshop-rails.herokuapp.com', subject: "Services for #{@service.car.nickname}"
   end
 end

@@ -10,6 +10,6 @@ ActionMailer::Base.smtp_settings = {
   domain: 'carshop-rails.herokuapp.com',
   authentication: 'plain',
   enable_starttls_auto: true,
-  user_name: ENV['SENDGRID_USERNAME'],
-  password: ENV['SENDGRID_PASSWORD']
+  user_name: Rails.application.credentials.sendgrid[:SENDGRID_USERNAME],
+  password: Rails.application.credentials.sendgrid[:SENDGRID_PASSWORD]
   }
