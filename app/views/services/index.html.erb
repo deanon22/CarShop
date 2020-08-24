@@ -21,15 +21,20 @@
       <td><%= s.car.nickname %></td>
       <td><%= link_to 'Delete Service', service_path(s), 
               method: :delete, data: {confirm:"Are you sure you want to delete this service record?" }, 
-                                                        class: "btn btn-xs btn-danger" %> </td>
+                                                        class: 'button is-danger is-small is-outlined is-rounded'%> </td>
 
     </tr>
     <% end %>    
   </table>
 </div>
 
-<%= link_to 'Add New Service', new_service_path() %>
+<%= link_to 'Add New Service', new_service_path(), {class: 'button is-primary'} %>
 
+<div class="container">
+  <div class="container">
+    <%= paginate @services  %>
+  </div>
+</div>
 
 
 

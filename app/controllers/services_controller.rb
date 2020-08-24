@@ -2,9 +2,9 @@ class ServicesController < ApplicationController
 
   def index
     if params[:car_id]
-      @services = Service.where(:car_id => params[:car_id]).order(service_date: :desc)
+      @services = Service.where(:car_id => params[:car_id]).order(service_date: :desc).page params[:page] 
     else
-      @services = Service.order(service_date: :desc) 
+      @services = Service.order(service_date: :desc).page params[:page] 
     end            
   end
 
@@ -50,6 +50,17 @@ class ServicesController < ApplicationController
     end
   end
 end
+
+def delete_image_attachment
+  @upload = ActiveStorage::Blob.find_signed(params[:id])
+  @upload.attachments.first.purge
+  redirect_to services_url
+end
+
+
+
+
+
 private
   def service_params
     params.require(:service).permit(:service_date, :description, :notes, :mileage, :cost, :nickname, :car_id, uploads:[])

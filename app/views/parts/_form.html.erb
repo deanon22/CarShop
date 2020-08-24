@@ -1,0 +1,8 @@
+<%= simple_form_for(@part) do |f| %>
+  <%= f.input :name, as: :text, input_html: {class: 'input class="input" type="textarea" placeholder="Name"'}   %>  
+  <%= f.input :description , as: :text, input_html: {class: 'input class="input" type="textarea" placeholder="Description"'}   %>
+  <%= f.input :price , as: :decimal, input_html: {class: 'input class="input" type="number"'}%> 
+  <%=  f.input_field :service_id, :as => :hidden %>
+  <%= f.button :submit , {class: 'button is-primary'}%>
+
+<% end %>

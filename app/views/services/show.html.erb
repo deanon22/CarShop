@@ -3,7 +3,7 @@
   <div class="columns">
     <div class="column is-6 is-center">
       <div class="table-container">
-        <table class="table is-bordered is-striped is-narrow is-hoverable">
+        <table class="table is-bordered is-striped is-narrow is-hoverable mb-4">
           <tr>
             <th>Service Date</th>
             <th>Description</th>      
@@ -19,34 +19,35 @@
         </table>
       </div>
     </div>
-    <div>
+  <div>
 </section>
 <section>
+<h4>Part Used for service on <%= @service.service_date.strftime("%m/%d/%Y")  %></h4>
+
   <div class="columns">
     <div class="column is-6 is-center">
-    <div class="table-container">
-      <table class="table is-bordered is-striped is-narrow is-hoverable">
-        <tr>
-          <th>Part Name</th>
-          <th>Part Description</th>      
-          <th>Price</th>
-          <th>Action</th>
-        </tr>  
-        <h2>Part Used for service on <%= @service.service_date.strftime("%m/%d/%Y")  %></h2>
-      
-            <% @service.parts.each do |p| %>
-              <tr>
-                <td><%= link_to p.name, edit_part_path(p) %></td>
-                <td><%= p.description %></td>
-                <td><%= number_to_currency(p.price) %></td> 
-                <td><%= link_to 'Delete Part', part_path(p), 
-                        method: :delete, data: {confirm:"Are you sure you want to delete this part record?" }, 
-                                                                  class: "btn btn-xs btn-danger" %> </td>
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable">
+          <tr>
+            <th>Part Name</th>
+            <th>Part Description</th>      
+            <th>Price</th>
+            <th>Action</th>
+          </tr>  
+      <%# <div class="container"> %>
+        <% @service.parts.each do |p| %>
+          <tr>
+            <td><%= link_to p.name, edit_part_path(p) %></td>
+            <td><%= p.description %></td>
+            <td><%= number_to_currency(p.price) %></td> 
+            <td><%= link_to 'Delete Part', part_path(p), 
+                    method: :delete, data: {confirm:"Are you sure you want to delete this part record?" }, 
+                                                              class: 'button is-danger is-small is-outlined is-rounded' %> </td>
 
-              </tr>
-            <% end %>            
+          </tr>
+        <% end %>            
         </table>
-        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -54,35 +55,42 @@
 
 <strong><%= link_to 'Add Part to Service:', {:controller => 'parts', :action => 'new', :service_id => @service.id} %></strong>
 <%= @service.description %>
+</div>
 
 <section>
+<%# <div class="container"> %>
   <div class="columns">
     <div class="column is-6 is-center">
       <% if @service.uploads.attached? %>
-      <h3><%= link_to 'Receipts', edit_service_path(@service) %></h3>
+      <h4 class="subtitle">
+        <%= link_to 'Receipts', edit_service_path(@service) %>
+      </h4>
       <div class="table-container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <tr>
             <th>Filename</th>
             <th>Created Date</th>
-            <th>Preview</th>
             <th>Action</th>
-          </tr>
-          
+          </tr>          
           <% @service.uploads.each do |upload| %>
           <tr>
             <td><%= link_to upload.filename, upload, target: :blank %></td>
-            <td><%= upload.created_at.strftime("%m/%d/%Y %r") %></td>
+            <td><%= upload.created_at.strftime("%m/%d/%y %l:%M %p") %></td>
             <%# <td><%= image_tag upload.preview(resize: "50x50") %></td>
-            <td><%= link_to 'Remove Attachment' %></td>
+            <td><%= link_to 'Remove Attachment', upload, method: :delete, data: {confirm:"Are you sure you want to remove this attachment?" } , class: 'button is-danger is-small is-outlined is-rounded' %></td>
           </tr>
           <% end %>    
         </table>
       </div>
       <% else %>
-        <h3>No Receipts Attached</h3>
+        <h4 class="subtitle">No Receipts Attached</h4>        
         <strong><%= link_to 'Add Receipt', edit_service_path(:service_id => @service.id) %></strong>
       <% end %>
-    </div>
-  </div>
+     </div>
+   </div>
+  
+</section>
+
+<section>
+  <%= link_to 'Back to Services', services_path, {class: 'button is-primary mt-4'} %>
 </section>
