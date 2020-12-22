@@ -1,32 +1,49 @@
+<%# <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+h1 {
+  font-size: 25px;   
+}
+</style> %>
 <h1> Services for <%= @service.car.nickname %></h1>
-<p>
-  <%= @greeting %>,
-</p>
+<br>
 <h4>
+  <p>
+    <%= @greeting %>,
+  </p>
+
  the following services were performed on your <%= @service.car.nickname %>
 </h4>
-
+<br>
   <p> 
+  <%# <table style= border: 1px solid black;  border-collapse: collapse;>  %>
   <div class="table-container">
-  <table class="table is-bordered is-striped is-narrow is-hoverable">
-    <tr>
-      <th>Date of Service</th>
-      <th>Service Description</th>
-      <th>Service Notes</th>      
-      <th>Mileage</th>
-      <th>Cost</th>
-    </tr>   
-    <tr>
-      <td><%=  @service.service_date.strftime("%m/%d/%Y")  %></td>
-      <td><%=  @service.description %></td>
-      <td><%=  @service.notes %></td>      
-      <td><%=  number_with_delimiter(@service.mileage) %></td> 
-      <td><%=  number_to_currency(@service.cost) %></td>   
-    </tr>      
-  </table>
+    <table class="table is-bordered is-hoverable">
+      <tr>
+        <th>Date of Service</th>
+        <th>Service Description</th>
+        <th>Service Notes</th>      
+        <th>Mileage</th>
+        <th>Cost</th>
+      </tr>   
+      <tr>
+        <td><%=  @service.service_date.strftime("%m/%d/%Y")  %></td>
+        <td><%=  link_to @service.description, service_url(@service)%></td>
+        <td><%=  @service.notes %></td>      
+        <td><%=  number_with_delimiter(@service.mileage) %></td> 
+        <td><%=  number_to_currency(@service.cost) %></td>   
+      </tr>    
+      
+    </table>  
+    <%# </table> %>
 </div>
 
       A new service <%= "#{@service.description} was performed on your vehichle."%>
  </p>
 
-<h2>Thanks!!</h2>
+

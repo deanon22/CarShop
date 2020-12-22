@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :receipts
+  require 'sidekiq/web'
+  mount Sidekiq::Web => "/sidekiq"
+  #  resources :receipts do
+  #   member do
+  #     delete :delete_image_attachment
+  #   end
+  #  end
   get 'parts/index'
   get 'parts/show'
   get 'parts/create'
@@ -7,7 +13,11 @@ Rails.application.routes.draw do
   # get 'cars/show'
   devise_for :users
   root 'welcome#index'
-  resources :services
+  resources :services do
+    member do
+      delete :delete_image_attachment
+    end
+  end
   resources :cars
   resources :parts
  

@@ -30,14 +30,16 @@
 
 <%= link_to 'Add New Service', new_service_path(), {class: 'button is-primary'} %>
 
-<div class="container">
+<section class="section">
   <div class="container">
-    <%= paginate @services  %>
+    <div class="level-item">
+      <div class="columns">
+        <div class="column is-12">        
+          <%= paginate @services, window: 2  %> 
+      </div>
+    </div>
+   </div>    
   </div>
-</div>
+</section>
 
-
-
-
-  
  

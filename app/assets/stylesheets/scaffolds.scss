@@ -20,8 +20,9 @@ a:visited {
   color: #666; }
 
 a:hover {
-  color: #fff;
-  background-color: #000; }
+  // color: #fff;
+  background-color: #00d1b2;
+  color: white; }
 
 th {
   padding-bottom: 5px; }
@@ -61,5 +62,10 @@ div.actions {
   font-size: 12px;
   list-style: square; }
 
-label {
-  display: block; }
+// label {
+//   display: block; }
+li::marker {
+  color: white
+  ;
+  font-size: 1.5em;
+}

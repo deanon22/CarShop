@@ -6,12 +6,14 @@ class ServiceMailer < ApplicationMailer
   #   en.service_mailer.new_service.subject
   #
   def new_service
-    @greeting = "Hi Jason"
+    @service = params[:service]
+    @greeting = "Hi owner of #{@service.car.nickname}"
+    #{@service.car.nickname}
     # @user = params[:user]
-     @service = params[:service]
+    
     @description = @service.description
     
 
-    mail to: 'jdean22@gmail.com',from: 'jdean22@gmail.com', subject: "Services for #{@service.car.nickname}"
+    mail to: 'jdean22@gmail.com',from: 'jdean22@gmail.com', subject: "A new service added for #{@service.car.nickname}"
   end
 end

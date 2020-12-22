@@ -2,9 +2,9 @@ class ServicesController < ApplicationController
 
   def index
     if params[:car_id]
-      @services = Service.where(:car_id => params[:car_id]).order(service_date: :desc).page params[:page] 
+      @services = Service.where(:car_id => params[:car_id]).order(created_at: :desc).page params[:page] 
     else
-      @services = Service.order(service_date: :desc).page params[:page] 
+      @services = Service.order(created_at: :desc).page params[:page] 
     end            
   end
 
@@ -16,8 +16,8 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
-      ServiceMailer.with(service: @service).new_service.deliver_later
-      flash[:success] = "Service was successfully created"
+      ServiceMailer.with(service: @service).new_service.deliver_now#deliver_later(wait: 1.minutes)
+      flash[:notice] = "Service was successfully created"
       redirect_to service_path(@service)
     else 
       render 'new'
@@ -38,6 +38,7 @@ class ServicesController < ApplicationController
     @service.destroy
     flash[:danger] = "Service has been removed"
     redirect_to services_path
+    
   end
   
   def update
@@ -49,17 +50,18 @@ class ServicesController < ApplicationController
       render 'edit'
     end
   end
+
+  def convert_tz
+    current_time = Time.now.in_time_zone('America/New_York')  
+  end
+
+  def delete_image_attachment
+    @upload = ActiveStorage::Blob.find_signed(params[:id])
+    @upload.attachments.first.purge_later
+    redirect_back(fallback_location: services_path)
+  end
+
 end
-
-def delete_image_attachment
-  @upload = ActiveStorage::Blob.find_signed(params[:id])
-  @upload.attachments.first.purge
-  redirect_to services_url
-end
-
-
-
-
 
 private
   def service_params

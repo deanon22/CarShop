@@ -22,7 +22,10 @@
   <div>
 </section>
 <section>
-<h4>Part Used for service on <%= @service.service_date.strftime("%m/%d/%Y")  %></h4>
+<h4>Part Used for service on <%= @service.service_date.strftime("%m/%d/%Y")  %>
+ (<%= time_ago_in_words(@service.service_date) %> ago)
+</h4>
+
 
   <div class="columns">
     <div class="column is-6 is-center">
@@ -75,9 +78,9 @@
           <% @service.uploads.each do |upload| %>
           <tr>
             <td><%= link_to upload.filename, upload, target: :blank %></td>
-            <td><%= upload.created_at.strftime("%m/%d/%y %l:%M %p") %></td>
+            <td><%= upload.created_at.in_time_zone.strftime("%m/%d/%y %l:%M %p") %></td>
             <%# <td><%= image_tag upload.preview(resize: "50x50") %></td>
-            <td><%= link_to 'Remove Attachment', upload, method: :delete, data: {confirm:"Are you sure you want to remove this attachment?" } , class: 'button is-danger is-small is-outlined is-rounded' %></td>
+            <td><%= link_to 'Remove Attachment', delete_image_attachment_service_url(upload.signed_id), method: :delete, data: {confirm:"Are you sure you want to remove this attachment?" } , class: 'button is-danger is-small is-outlined is-rounded' %></td>
           </tr>
           <% end %>    
         </table>

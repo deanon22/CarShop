@@ -4,6 +4,6 @@ class Service < ApplicationRecord
 
   has_many_attached :uploads
  
-  paginates_per 3
+  paginates_per 5
 end
 

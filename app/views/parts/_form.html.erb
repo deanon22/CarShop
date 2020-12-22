@@ -4,5 +4,9 @@
   <%= f.input :price , as: :decimal, input_html: {class: 'input class="input" type="number"'}%> 
   <%=  f.input_field :service_id, :as => :hidden %>
   <%= f.button :submit , {class: 'button is-primary'}%>
-
 <% end %>
+<section>
+  <strong>
+    <%= link_to "Back to #{@part.service.description}", service_path(@part.service_id) %>
+  </strong>
+</section>
