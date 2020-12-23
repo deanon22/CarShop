@@ -2,9 +2,9 @@ class ServicesController < ApplicationController
 
   def index
     if params[:car_id]
-      @services = Service.where(:car_id => params[:car_id]).order(created_at: :desc).page params[:page] 
+      @services = Service.where(:car_id => params[:car_id]).order(service_date: :desc).page params[:page] 
     else
-      @services = Service.order(created_at: :desc).page params[:page] 
+      @services = Service.order(service_date: :desc).page params[:page] 
     end            
   end
 
