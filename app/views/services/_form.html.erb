@@ -3,8 +3,8 @@
     <div class="column is-5">
     <%= simple_form_for(@service) do |f| %>
       <%= f.input :service_date,label: "Date of Service", as: :date, order: [:month,:day, :year], input_html:{class: 'input type="date"' } %>
-      <%= f.input :notes, as: :text, input_html: {class: 'input class="input" type="textarea"'} %>  
       <%= f.input :description, as: :text, input_html: {class: 'input class="input" type="textarea"'} %>
+      <%= f.input :notes, as: :text, input_html: {class: 'input class="input" type="textarea"'} %>  
       <%= f.input :mileage, as: :integer,  input_html: {class: 'input class="input" type="number"'} %>
       <%= f.input :cost, as: :currency, input_html: {class: 'input class="input" type="number"'}%>
       <%= f.input :car_id, as: :radio_buttons, collection: [["Jason's XC90",1 ],["Ginger's XC90", 2]] %>
